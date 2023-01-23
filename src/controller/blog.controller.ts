@@ -153,7 +153,7 @@ export default {
             const postFindedById = await Post.findById(id);
 
             if(!postFindedById) {
-                return res.status(400).json({message: "Postagem não encontrada!"});
+                return res.status(404).json({message: "Postagem não encontrada!"});
             }
 
             return res.status(200).json(postFindedById);
