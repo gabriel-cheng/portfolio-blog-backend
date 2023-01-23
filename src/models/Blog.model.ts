@@ -9,7 +9,7 @@ interface iPostSchema {
     descricao: string,
     deploy?: string,
     repositorio: string,
-    postLinkedin?: string
+    postLinkedin?: string,
 }
 
 const PostSchema = new Schema<iPostSchema>({
@@ -21,7 +21,7 @@ const PostSchema = new Schema<iPostSchema>({
     descricao: {type: String, require: true},
     deploy: {type: String},
     repositorio: {type: String, required: true},
-    postLinkedin: {type: String}
+    postLinkedin: {type: String},
 });
 
 const PostModel = model("BlogPortfolio", PostSchema);
