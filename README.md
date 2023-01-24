@@ -7,7 +7,7 @@ O projeto se trata de um blog que vai gerenciar as postagen de projetos no portf
 ## 🛠️ Construído com
 
 * [Node.js](https://nodejs.org/en/) - Plataforma utilizada para desenvolver a estrutura Backend.
-* [Typescript](https://developer.mozilla.org/pt-BR/docs/Web/JavaScript) - Linguagem principal utilizada para desenvolver a aplicação.
+* [Typescript](https://www.typescriptlang.org/) - Linguagem principal utilizada para desenvolver a aplicação.
 
 ## ✒️ Autores
 
