@@ -3,12 +3,10 @@ import blogController from "../controller/blog.controller";
 import authMiddleware from "../middlewares/auth.middleware";
 const router = Router();
 
-router.use(authMiddleware.checkAuthentication);
-
-router.delete("/posts/delete/:id", blogController.deletePost);
-router.patch("/posts/update/:id", blogController.updatePost);
-router.post("/posts/create", blogController.createNewPost);
-router.get("/posts/:id", blogController.findPostById);
-router.get("/posts", blogController.findAllPosts);
+router.delete("/posts/delete/:id", authMiddleware.checkAuthentication,blogController.deletePost);
+router.patch("/posts/update/:id", authMiddleware.checkAuthentication, blogController.updatePost);
+router.post("/posts/create", authMiddleware.checkAuthentication, blogController.createNewPost);
+router.get("/posts/:id", authMiddleware.checkAuthentication, blogController.findPostById);
+router.get("/posts", authMiddleware.checkAuthentication, blogController.findAllPosts);
 
 export default router;

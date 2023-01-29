@@ -7,7 +7,6 @@ export default {
     login: async(req: Request, res: Response) => {
         const { username, password } = req.body;
         const user = await User.findOne({username: username});
-        console.log(user);
 
         if(!user) {
             return res.status(404).json({message: "Usuário não encontrado!"});
