@@ -4,8 +4,10 @@ import express from "express";
 import blogRouter from "./router/blog.router";
 import userRouter from "./router/user.router";
 import MongoConnect from "./database/connect.database";
+import cors from "cors";
 const app = express();
 
+app.use(cors());
 MongoConnect();
 app.use(express.json());
 
