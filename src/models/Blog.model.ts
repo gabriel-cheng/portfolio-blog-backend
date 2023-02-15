@@ -3,7 +3,6 @@ import { model, Schema } from "mongoose";
 interface iPostSchema {
     titulo: string,
     ferramentas: [string],
-    cardBackgroundImage: string,
     status: string,
     videoUrl: string,
     descricao: string,
@@ -15,7 +14,6 @@ interface iPostSchema {
 const PostSchema = new Schema<iPostSchema>({
     titulo: {type: String, required: true},
     ferramentas: {type: [String], required: true, min: 0},
-    cardBackgroundImage: {type: String, required: true},
     status: {type: String, required: true},
     videoUrl: {type: String, required: true},
     descricao: {type: String, require: true},

@@ -30,7 +30,6 @@ export default {
         const {
             titulo,
             ferramentas,
-            cardBackgroundImage,
             status,
             videoUrl,
             descricao,
@@ -42,7 +41,6 @@ export default {
         const updatedPost = {
             titulo,
             ferramentas,
-            cardBackgroundImage,
             status,
             videoUrl,
             descricao,
@@ -50,34 +48,6 @@ export default {
             repositorio,
             postLinkedin
         };
-
-        if(titulo == postFinded.titulo) {
-            return res.status(400).json({message: "Você precisa inserir um título diferente do atual para poder atualizá-lo."});
-        }
-        if(ferramentas == postFinded.ferramentas) {
-            return res.status(400).json({message: "Você precisa inserir uma ferramenta diferente da atual para poder atualizá-la."});
-        }
-        if(cardBackgroundImage == postFinded.cardBackgroundImage) {
-            return res.status(400).json({message: "Você precisa inserir uma imagem diferente da atual para poder atualizá-la."});
-        }
-        if(status == postFinded.status) {
-            return res.status(400).json({message: "Você precisa inserir um status diferente do atual para poder atualizá-lo."});
-        }
-        if(videoUrl == postFinded.videoUrl) {
-            return res.status(400).json({message: "Você precisa inserir uma URL diferente da atual para poder atualizá-lo."});
-        }
-        if(descricao == postFinded.descricao) {
-            return res.status(400).json({message: "Você precisa inserir uma descrição diferente da atual para poder atualizá-la."});
-        }
-        if(deploy == postFinded.deploy) {
-            return res.status(400).json({message: "Você precisa inserir um link de deploy diferente do atual para poder atualizá-lo."});
-        }
-        if(repositorio == postFinded.repositorio) {
-            return res.status(400).json({message: "Você precisa inserir um repositório diferente do atual para poder atualizá-lo."});
-        }
-        if(postLinkedin == postFinded.postLinkedin) {
-            return res.status(400).json({message: "Você precisa inserir uma postagem Linkedin diferente da atual para poder atualizá-la."});
-        }
 
         try {
             await Post.updateOne({_id: id}, updatedPost);
@@ -92,7 +62,6 @@ export default {
         const {
             titulo,
             ferramentas,
-            cardBackgroundImage,
             status,
             videoUrl,
             descricao,
@@ -104,7 +73,6 @@ export default {
         const newPost = {
             titulo,
             ferramentas,
-            cardBackgroundImage,
             status,
             videoUrl,
             descricao,
@@ -120,9 +88,6 @@ export default {
             return res.status(400).json({message: "Você precisa informar as ferramentas utilizadas no projeto!"});
         } else if(ferramentas.length == 0) {
             return res.status(400).json({message: "Você precisa informar pelo menos 1 ferramenta utilizada no projeto!"});
-        }
-        if(!cardBackgroundImage) {
-            return res.status(400).json({message: "Você precisa informar o nome da imagem de background!"});
         }
         if(!status) {
             return res.status(400).json({message: "Você precisa informar o status atual do projeto!"});

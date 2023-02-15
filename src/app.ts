@@ -3,15 +3,25 @@ dotenv.config();
 import express from "express";
 import blogRouter from "./router/blog.router";
 import userRouter from "./router/user.router";
+import uploadRouter from "./router/pictures.router";
 import MongoConnect from "./database/connect.database";
 import cors from "cors";
+import fs from "fs";
 const app = express();
+const directoryExists = fs.existsSync("./public/uploads");
+
+app.use(express.static("public"));
+
+if(!directoryExists) {
+    fs.mkdirSync("./public/uploads");
+}
 
 app.use(cors());
 MongoConnect();
 app.use(express.json());
 
-app.use(blogRouter);
-app.use(userRouter);
+app.use("/posts", blogRouter);
+app.use("/users", userRouter);
+app.use("/pictures", uploadRouter);
 
 export default app;
