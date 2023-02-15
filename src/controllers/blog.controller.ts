@@ -1,5 +1,6 @@
 import { Request, Response } from "express";
 import Post from "../models/Blog.model";
+import fs from "fs";
 
 export default {
     deletePost: async(req: Request, res: Response) => {
@@ -12,6 +13,7 @@ export default {
 
         try {
             await Post.deleteOne({_id: id});
+            fs.unlinkSync(postFinded.pictureSrc);
 
             return res.status(200).json({message: "Postagem deletada com sucesso!"});
         } catch(err) {
@@ -59,6 +61,7 @@ export default {
         }
     },
     createNewPost: async(req: Request, res: Response) => {
+        const file = req.file;
         const {
             titulo,
             ferramentas,
@@ -67,7 +70,8 @@ export default {
             descricao,
             deploy,
             repositorio,
-            postLinkedin
+            postLinkedin,
+            pictureName,
         } = req.body;
 
         const newPost = {
@@ -78,7 +82,9 @@ export default {
             descricao,
             deploy,
             repositorio,
-            postLinkedin
+            postLinkedin,
+            pictureName,
+            pictureSrc: file.path,
         };
 
         if(!titulo) {
@@ -100,6 +106,9 @@ export default {
         }
         if(!repositorio) {
             return res.status(400).json({message: "Você precisa informar o repositório do projeto!"});
+        }
+        if(!file) {
+            return res.status(400).json({message: "Informe o arquivo para continuar"});
         }
 
         try {

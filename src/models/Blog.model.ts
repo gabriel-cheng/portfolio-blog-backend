@@ -9,6 +9,8 @@ interface iPostSchema {
     deploy?: string,
     repositorio: string,
     postLinkedin?: string,
+    pictureName: string,
+    pictureSrc: string
 }
 
 const PostSchema = new Schema<iPostSchema>({
@@ -20,6 +22,8 @@ const PostSchema = new Schema<iPostSchema>({
     deploy: {type: String},
     repositorio: {type: String, required: true},
     postLinkedin: {type: String},
+    pictureName: {type: String, required: true},
+    pictureSrc: {type: String, required: true}
 });
 
 const PostModel = model("BlogPortfolio", PostSchema);
