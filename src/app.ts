@@ -10,7 +10,6 @@ const app = express();
 const publicExists = fs.existsSync("./public");
 const uploadExists = fs.existsSync("./public/uploads");
 
-
 app.use(express.static("public"));
 
 if(!publicExists) {
