@@ -22,6 +22,7 @@ export default {
         }
     },
     updatePost: async(req: Request, res: Response) => {
+        const file = req.file;
         const id = req.params.id;
         const postFinded = await Post.findById(id);
 
@@ -37,7 +38,8 @@ export default {
             descricao,
             deploy,
             repositorio,
-            postLinkedin
+            postLinkedin,
+            pictureName,
         } = req.body;
 
         const updatedPost = {
@@ -48,8 +50,12 @@ export default {
             descricao,
             deploy,
             repositorio,
-            postLinkedin
+            postLinkedin,
+            pictureName,
+            pictureSrc: file.path
         };
+
+        fs.unlinkSync(postFinded.pictureSrc);
 
         try {
             await Post.updateOne({_id: id}, updatedPost);

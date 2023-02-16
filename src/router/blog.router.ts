@@ -5,7 +5,7 @@ import upload from "../config/multer.config";
 const router = Router();
 
 router.delete("/delete/:id", authMiddleware.checkAuthentication,blogController.deletePost);
-router.patch("/update/:id", authMiddleware.checkAuthentication, blogController.updatePost);
+router.patch("/update/:id", authMiddleware.checkAuthentication, upload.single("file"), blogController.updatePost);
 router.post("/create", authMiddleware.checkAuthentication, upload.single("file"), blogController.createNewPost);
 router.get("/:id", authMiddleware.checkAuthentication, blogController.findPostById);
 router.get("/", authMiddleware.checkAuthentication, blogController.findAllPosts);
