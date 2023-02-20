@@ -30,6 +30,19 @@ export default {
             return res.status(400).json({message: "Postagem não encontrada!"});
         }
 
+        interface iPost {
+            titulo?: string,
+            ferramentas?: string[],
+            status?: string,
+            videoUrl?: string,
+            descricao?: string,
+            deploy?: string,
+            repositorio?: string,
+            postLinkedin?: string,
+            pictureName?: string,
+            pictureSrc?: string
+        }
+
         const {
             titulo,
             ferramentas,
@@ -39,10 +52,10 @@ export default {
             deploy,
             repositorio,
             postLinkedin,
-            pictureName,
+            pictureName
         } = req.body;
 
-        const updatedPost = {
+        const updatedPost: iPost = {
             titulo,
             ferramentas,
             status,
@@ -51,11 +64,15 @@ export default {
             deploy,
             repositorio,
             postLinkedin,
-            pictureName,
-            pictureSrc: file.path
         };
 
-        fs.unlinkSync(postFinded.pictureSrc);
+        if(file) {
+            updatedPost.pictureName = pictureName;
+            updatedPost.pictureSrc = file.path;
+
+            fs.unlinkSync(postFinded.pictureSrc);
+        }
+
 
         try {
             await Post.updateOne({_id: id}, updatedPost);
