@@ -52,7 +52,6 @@ export default {
             deploy,
             repositorio,
             postLinkedin,
-            pictureName
         } = req.body;
 
         const updatedPost: iPost = {
@@ -67,12 +66,11 @@ export default {
         };
 
         if(file) {
-            updatedPost.pictureName = pictureName;
+            updatedPost.pictureName = file.filename;
             updatedPost.pictureSrc = file.path;
 
             fs.unlinkSync(postFinded.pictureSrc);
         }
-
 
         try {
             await Post.updateOne({_id: id}, updatedPost);
