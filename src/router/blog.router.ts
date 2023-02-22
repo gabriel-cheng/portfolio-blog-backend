@@ -5,8 +5,6 @@ import authMiddleware from "../middlewares/auth.middleware";
 import upload from "../config/multer.config";
 const router = express.Router();
 
-console.log(path.resolve(__dirname, "../../" + "public/uploads"));
-
 router.use("/files", express.static(path.resolve(__dirname, "../../" + "public/uploads")));
 router.delete("/delete/:id", authMiddleware.checkAuthentication,blogController.deletePost);
 router.patch("/update/:id", authMiddleware.checkAuthentication, upload.single("file"), blogController.updatePost);
