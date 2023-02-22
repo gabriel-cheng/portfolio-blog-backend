@@ -1,9 +1,13 @@
-import { Router } from "express";
+import express from "express";
+import path from "path";
 import blogController from "../controllers/blog.controller";
 import authMiddleware from "../middlewares/auth.middleware";
 import upload from "../config/multer.config";
-const router = Router();
+const router = express.Router();
 
+console.log(path.resolve(__dirname, "../../" + "public/uploads"));
+
+router.use("/files", express.static(path.resolve(__dirname, "../../" + "public/uploads")));
 router.delete("/delete/:id", authMiddleware.checkAuthentication,blogController.deletePost);
 router.patch("/update/:id", authMiddleware.checkAuthentication, upload.single("file"), blogController.updatePost);
 router.post("/create", authMiddleware.checkAuthentication, upload.single("file"), blogController.createNewPost);
