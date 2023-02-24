@@ -9,7 +9,7 @@ router.use("/files", express.static(path.resolve(__dirname, "../../" + "public/u
 router.delete("/delete/:id", authMiddleware.checkAuthentication,blogController.deletePost);
 router.patch("/update/:id", authMiddleware.checkAuthentication, upload.single("file"), blogController.updatePost);
 router.post("/create", authMiddleware.checkAuthentication, upload.single("file"), blogController.createNewPost);
-router.get("/:id", authMiddleware.checkAuthentication, blogController.findPostById);
+router.get("/:id", blogController.findPostById);
 router.get("/", blogController.findAllPosts);
 
 export default router;
