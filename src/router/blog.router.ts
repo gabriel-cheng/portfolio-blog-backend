@@ -10,6 +10,6 @@ router.delete("/delete/:id", authMiddleware.checkAuthentication,blogController.d
 router.patch("/update/:id", authMiddleware.checkAuthentication, upload.single("file"), blogController.updatePost);
 router.post("/create", authMiddleware.checkAuthentication, upload.single("file"), blogController.createNewPost);
 router.get("/:id", authMiddleware.checkAuthentication, blogController.findPostById);
-router.get("/", authMiddleware.checkAuthentication, blogController.findAllPosts);
+router.get("/", blogController.findAllPosts);
 
 export default router;
