@@ -1,5 +1,6 @@
 # Specifics
 package-lock.json
+public/uploads/
 
 # Logs
 logs
