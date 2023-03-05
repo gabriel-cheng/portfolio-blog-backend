@@ -1,6 +1,9 @@
 # Specifics
 package-lock.json
-public/uploads/
+public/uploads/*.png
+public/uploads/*.jpg
+public/uploads/*.jpeg
+public/uploads/*.PNG
 
 # Logs
 logs
