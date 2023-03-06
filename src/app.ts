@@ -7,7 +7,7 @@ import MongoConnect from "./database/connect.database";
 import cors from "cors";
 const app = express();
 
-app.use(express.static("public"));
+app.use(express.static(__dirname + "../../" + "/public"));
 
 app.use(cors());
 MongoConnect();
