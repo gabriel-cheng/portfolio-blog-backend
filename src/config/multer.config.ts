@@ -3,7 +3,7 @@ import multer from "multer";
 const upload = (multer({
     storage: multer.diskStorage({
         destination: (req, file, cb) => {
-            cb(null, "./public/uploads");
+            cb(null, __dirname+"../../../" + "/public/uploads");
         },
         filename: (req, file, cb) => {
             cb(null, Date.now().toString() + "_" + file.originalname);
